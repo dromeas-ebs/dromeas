@@ -4,7 +4,10 @@ import requests
 from datetime import datetime
 from odoo.exceptions import ValidationError
 import json
+import logging
 
+
+# _logger = logging.getLogger(__name__)
 
 class ProductionCustom(models.Model):
     _inherit = 'mrp.production'
@@ -68,7 +71,8 @@ class ProductionCustom(models.Model):
         # url = "http://localhost:8069/ebs/api"
         param = {'params': json_object}
 
-        print(json.dumps(json_object))
+        # print(json.dumps(json_object))
+        # _logger.info("Sending Production order ("+str(self.id)+") to Dromeas")
         send_data_request = requests.post(
             url,
             json=json_object,
@@ -82,8 +86,8 @@ class ProductionCustom(models.Model):
         # )
 
         if send_data_request.status_code != 200:
+            # _logger.info("Error. Production order id: "+str(self.id))
             raise ValidationError(_("Connection Error!"))
-        print(send_data_request.text)
 
         data = send_data_request.json()
         if not data['message']:

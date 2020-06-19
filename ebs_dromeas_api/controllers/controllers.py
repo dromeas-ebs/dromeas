@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from odoo import http
-import json
+# from odoo import http
+# import json
 
 
-class EbsCapstoneAccount(http.Controller):
+# class EbsCapstoneAccount(http.Controller):
     #     @http.route('/ebs_capstone_account/ebs_capstone_account/', auth='public')
     #     def index(self, **kw):
     #         return "Hello, world"
@@ -21,7 +21,7 @@ class EbsCapstoneAccount(http.Controller):
     #             'object': obj
     #         })
 
-    @http.route('/ebs/api/', type='json', auth='public', methods=['POST'], website=True)
-    def index(self, **kw):
-        print(self)
-        return "Hello, world"
+    # @http.route('/ebs/api/', type='json', auth='public', methods=['POST'], website=True)
+    # def index(self, **kw):
+    #     print(self)
+    #     return "Hello, world"
