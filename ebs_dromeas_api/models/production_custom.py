@@ -27,14 +27,14 @@ class ProductionCustom(models.Model):
             "password": "12345678"
         }
 
-        get_token_request = requests.post(
-            url=url,
-            json=params
-        )
-        if get_token_request.status_code != 200:
-            raise ValidationError(_("Connection Error, co"))
-        data = get_token_request.json()
-        token = data['token']
+        # get_token_request = requests.post(
+        #     url=url,
+        #     json=params
+        # )
+        # if get_token_request.status_code != 200:
+        #     raise ValidationError(_("Connection Error"))
+        # data = get_token_request.json()
+        # token = data['token']
         array_list = []
         json_object = {
             "workorder_id": self.id,
@@ -64,14 +64,17 @@ class ProductionCustom(models.Model):
         # data = [json_object]
         # data_json = json.dumps(data)
         # print(data_json)
-        # url = "https://staging.epoptia.io/api/odoo/workorders"
-        url = "http://localhost:8069/ebs/api"
+        url = "https://staging.epoptia.io/api/odoo/workorders"
+        # url = "http://localhost:8069/ebs/api"
         param = {'params': json_object}
+
+        print(json.dumps(json_object))
         send_data_request = requests.post(
             url,
-            data=json.dumps(param),
-            headers={'Content-Type': 'application/json'}
+            json=json_object,
         )
+        # headers = {'Content-Type': 'application/json'}
+
         # send_data_request = requests.post(
         #     url,
         #     json=data_json,
@@ -81,7 +84,10 @@ class ProductionCustom(models.Model):
         if send_data_request.status_code != 200:
             raise ValidationError(_("Connection Error!"))
         print(send_data_request.text)
-        print(send_data_request.json())
+
+        data = send_data_request.json()
+        if not data['message']:
+            raise ValidationError("Connection Error with API, please try again.")
         # response_json = send_data_request.json()
         # wiz = self.env['message.wizard'].create({
         #     'message': "Success",
