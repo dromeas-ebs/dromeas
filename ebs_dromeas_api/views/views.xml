@@ -1,0 +1,30 @@
+<odoo>
+    <data>
+
+
+        <record id="production_form_custom" model="ir.ui.view">
+            <field name="name">production.form.custom</field>
+            <field name="model">mrp.production</field>
+            <field name="inherit_id" ref="mrp.mrp_production_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//header" position="inside">
+                    <button name="call_api"  type="object" string="Call API" class="oe_highlight"/>
+                </xpath>
+<!--                <xpath expr="//div[@name='button_box']" position="inside">-->
+<!--                    <button name="action_see_asset" type="object" class="oe_stat_button"-->
+<!--                            attrs="{'invisible':[('asset_number','=',0)]}" icon="fa-id-card-o">-->
+<!--                                <div class="o_field_widget o_stat_info">-->
+<!--                                    <span class="o_stat_value">-->
+<!--                                        <field name="asset_number"/>-->
+<!--                                    </span>-->
+<!--                                    <span class="o_stat_text">Assets</span>-->
+<!--                                </div>-->
+<!--                    </button>-->
+<!--                </xpath>-->
+
+
+            </field>
+        </record>
+
+    </data>
+</odoo>
